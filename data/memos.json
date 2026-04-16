@@ -1,0 +1,110 @@
+{
+  "memos": [
+    {
+      "id": "memo_demo001",
+      "timestamp": "2024-11-06T10:00:00",
+      "content": "트럼프가 2024년 미국 대선에서 당선됨. 선거 공약으로 중국산 제품에 60%, 기타 수입품에 10~20% 보편 관세 부과 예고. 이민 제한 및 화석연료 규제 완화도 핵심 정책.",
+      "factors": ["정치", "경제"],
+      "intensity": 9,
+      "duration": "장기",
+      "summary": "트럼프 당선 — 고관세·보호무역 정책 예고",
+      "keywords": ["트럼프", "관세", "대선", "무역전쟁", "보호무역"],
+      "links": [],
+      "conflicts": []
+    },
+    {
+      "id": "memo_demo002",
+      "timestamp": "2024-11-07T09:30:00",
+      "content": "트럼프 당선 이후 달러 강세 급격히 진행. DXY 지수 105 돌파. 신흥국 통화 전반 약세 압력. 한국 원화 1,400원대 재진입 우려.",
+      "factors": ["경제", "유동성"],
+      "intensity": 7,
+      "duration": "중기",
+      "summary": "달러 강세 — DXY 105 돌파, 원화 약세 압력",
+      "keywords": ["달러", "DXY", "강세", "원화", "신흥국"],
+      "links": [
+        {
+          "target_id": "memo_demo001",
+          "relationship": "인과관계",
+          "description": "트럼프 당선 → 보호무역 강화 기대 → 달러 수요 증가 → 달러 강세",
+          "strength": 0.85
+        }
+      ],
+      "conflicts": []
+    },
+    {
+      "id": "memo_demo003",
+      "timestamp": "2024-11-10T14:00:00",
+      "content": "엔비디아 FY3Q24 실적 발표: 매출 351억 달러(YoY +94%), 데이터센터 부문 306억 달러(YoY +206%). H100/H200 수요 폭발적. 2025년 블랙웰 아키텍처 공급 확대 예고.",
+      "factors": ["과학/기술", "펀더멘털"],
+      "intensity": 8,
+      "duration": "장기",
+      "summary": "엔비디아 AI 수요 폭발 — 데이터센터 +206%",
+      "keywords": ["엔비디아", "AI", "데이터센터", "반도체", "블랙웰"],
+      "links": [],
+      "conflicts": []
+    },
+    {
+      "id": "memo_demo004",
+      "timestamp": "2024-11-15T08:00:00",
+      "content": "트럼프 행정부가 엔비디아 H100 등 첨단 AI 반도체의 중국 수출 추가 제한 검토. 현행 A800/H800 우회 수출 루트도 차단 예정. 엔비디아 중국 매출 비중 약 17% 위협.",
+      "factors": ["정치", "과학/기술", "펀더멘털"],
+      "intensity": 8,
+      "duration": "장기",
+      "summary": "AI 반도체 대중 수출 규제 강화 — 엔비디아 타격",
+      "keywords": ["반도체규제", "중국수출", "엔비디아", "AI칩", "수출통제"],
+      "links": [
+        {
+          "target_id": "memo_demo001",
+          "relationship": "인과관계",
+          "description": "트럼프 당선 → 대중 강경책 → 첨단 반도체 수출 제한 강화",
+          "strength": 0.9
+        },
+        {
+          "target_id": "memo_demo003",
+          "relationship": "인과관계",
+          "description": "수출 규제 강화 → 엔비디아 중국 매출 감소 → 펀더멘털 악화 리스크",
+          "strength": 0.75
+        }
+      ],
+      "conflicts": []
+    },
+    {
+      "id": "memo_demo005",
+      "timestamp": "2024-11-20T11:00:00",
+      "content": "미 연준(Fed) 파월 의장 발언: '인플레이션이 예상보다 끈질기다. 금리 인하 서두르지 않겠다.' 2025년 금리 인하 횟수 전망 4회 → 2회로 하향. 10년물 국채 금리 4.5% 재돌파.",
+      "factors": ["유동성", "경제"],
+      "intensity": 8,
+      "duration": "중기",
+      "summary": "Fed 매파 발언 — 2025 금리 인하 전망 2회로 축소",
+      "keywords": ["연준", "금리", "파월", "인플레이션", "국채"],
+      "links": [
+        {
+          "target_id": "memo_demo002",
+          "relationship": "상관관계",
+          "description": "금리 인하 지연 기대 → 달러 강세 지속과 동반 움직임",
+          "strength": 0.7
+        }
+      ],
+      "conflicts": []
+    },
+    {
+      "id": "memo_demo006",
+      "timestamp": "2024-11-25T09:00:00",
+      "content": "BofA 글로벌 펀드매니저 서베이: 현금 비중 5년래 최저(4.0%). 주식 오버웨이트 순비율 +35%로 2022년 이후 최고. 'AI 버블 우려' 응답 41%로 사상 최대. CNN 공포탐욕지수 78 (탐욕 구간).",
+      "factors": ["센티먼트"],
+      "intensity": 6,
+      "duration": "단기",
+      "summary": "투자자 심리 과열 — 현금 비중 최저, 탐욕 구간",
+      "keywords": ["센티먼트", "공포탐욕", "펀드매니저", "현금비중", "버블"],
+      "links": [
+        {
+          "target_id": "memo_demo003",
+          "relationship": "상관관계",
+          "description": "엔비디아 AI 열풍이 기술주 과열 심리 확산에 기여",
+          "strength": 0.6
+        }
+      ],
+      "conflicts": []
+    }
+  ]
+}

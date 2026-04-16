@@ -118,20 +118,28 @@ with st.sidebar:
 
     # LLM 설정
     st.subheader("⚙️ LLM 설정")
-    provider = st.selectbox("프로바이더", ["OpenAI", "Anthropic"], key="provider")
+    provider = st.selectbox("프로바이더", ["Gemini", "OpenAI", "Anthropic"], key="provider")
 
     model_options = {
+        "Gemini":    ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"],
         "OpenAI":    ["gpt-4o-mini", "gpt-4o", "gpt-4-turbo"],
         "Anthropic": ["claude-sonnet-4-6", "claude-opus-4-6", "claude-haiku-4-5-20251001"],
     }
     model = st.selectbox("모델", model_options[provider], key="model")
 
+    placeholder_map = {
+        "Gemini":    "AIza...",
+        "OpenAI":    "sk-...",
+        "Anthropic": "sk-ant-...",
+    }
     api_key = st.text_input(
         "API Key",
         type="password",
-        placeholder=f"{'sk-...' if provider == 'OpenAI' else 'sk-ant-...'}",
+        placeholder=placeholder_map.get(provider, "API Key"),
         key="api_key",
     )
+    if provider == "Gemini":
+        st.caption("🆓 Gemini는 무료 티어 제공 — [키 발급](https://aistudio.google.com)")
 
     st.divider()
 

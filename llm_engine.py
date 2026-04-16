@@ -126,6 +126,25 @@ def _call_anthropic(prompt: str, api_key: str, model: str) -> dict:
     return json.loads(text[start:end])
 
 
+# ─── Gemini 호출 ─────────────────────────────────────────────────────────────────
+
+def _call_gemini(prompt: str, api_key: str, model: str) -> dict:
+    import google.generativeai as genai
+
+    genai.configure(api_key=api_key)
+    gemini = genai.GenerativeModel(
+        model_name=model,
+        generation_config={"temperature": 0.2, "response_mime_type": "application/json"},
+    )
+    resp = gemini.generate_content(prompt)
+    text = resp.text
+    start = text.find("{")
+    end   = text.rfind("}") + 1
+    if start == -1 or end == 0:
+        raise ValueError("응답에서 JSON을 찾을 수 없습니다.")
+    return json.loads(text[start:end])
+
+
 # ─── 공개 API ──────────────────────────────────────────────────────────────────
 
 def analyze_memo(
@@ -149,6 +168,7 @@ def analyze_memo(
     default_models = {
         "OpenAI":    "gpt-4o-mini",
         "Anthropic": "claude-sonnet-4-6",
+        "Gemini":    "gemini-2.0-flash",
     }
     model = model or default_models.get(provider, "gpt-4o-mini")
 
@@ -157,6 +177,8 @@ def analyze_memo(
             raw = _call_openai(prompt, api_key, model)
         elif provider == "Anthropic":
             raw = _call_anthropic(prompt, api_key, model)
+        elif provider == "Gemini":
+            raw = _call_gemini(prompt, api_key, model)
         else:
             raise ValueError(f"지원하지 않는 프로바이더: {provider}")
     except Exception as e:

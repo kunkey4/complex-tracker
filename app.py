@@ -121,7 +121,7 @@ with st.sidebar:
     provider = st.selectbox("프로바이더", ["Gemini", "OpenAI", "Anthropic"], key="provider")
 
     model_options = {
-        "Gemini":    ["gemini-2.0-flash-exp", "gemini-1.5-flash-latest", "gemini-1.5-pro-latest"],
+        "Gemini":    ["gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-1.5-flash"],
         "OpenAI":    ["gpt-4o-mini", "gpt-4o", "gpt-4-turbo"],
         "Anthropic": ["claude-sonnet-4-6", "claude-opus-4-6", "claude-haiku-4-5-20251001"],
     }

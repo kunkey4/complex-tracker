@@ -129,14 +129,18 @@ def _call_anthropic(prompt: str, api_key: str, model: str) -> dict:
 # ─── Gemini 호출 ─────────────────────────────────────────────────────────────────
 
 def _call_gemini(prompt: str, api_key: str, model: str) -> dict:
-    import google.generativeai as genai
+    from google import genai
+    from google.genai import types
 
-    genai.configure(api_key=api_key)
-    gemini = genai.GenerativeModel(
-        model_name=model,
-        generation_config={"temperature": 0.2, "response_mime_type": "application/json"},
+    client = genai.Client(api_key=api_key)
+    resp = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.2,
+            response_mime_type="application/json",
+        ),
     )
-    resp = gemini.generate_content(prompt)
     text = resp.text
     start = text.find("{")
     end   = text.rfind("}") + 1
@@ -168,7 +172,7 @@ def analyze_memo(
     default_models = {
         "OpenAI":    "gpt-4o-mini",
         "Anthropic": "claude-sonnet-4-6",
-        "Gemini":    "gemini-2.0-flash-exp",
+        "Gemini":    "gemini-2.0-flash",
     }
     model = model or default_models.get(provider, "gpt-4o-mini")
 

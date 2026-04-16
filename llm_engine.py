@@ -1,4 +1,5 @@
 # llm_engine.py — LLM 분석 엔진 (OpenAI / Anthropic 양쪽 지원)
+from __future__ import annotations
 
 import json
 from config import FACTORS, DURATION_DAYS

@@ -1,4 +1,5 @@
 # graph_engine.py — Pyvis 지식 그래프 빌더
+from __future__ import annotations
 
 from pyvis.network import Network
 from config import FACTOR_COLORS, FACTORS

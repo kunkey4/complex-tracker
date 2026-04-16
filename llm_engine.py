@@ -168,7 +168,7 @@ def analyze_memo(
     default_models = {
         "OpenAI":    "gpt-4o-mini",
         "Anthropic": "claude-sonnet-4-6",
-        "Gemini":    "gemini-2.0-flash",
+        "Gemini":    "gemini-2.0-flash-exp",
     }
     model = model or default_models.get(provider, "gpt-4o-mini")
 
